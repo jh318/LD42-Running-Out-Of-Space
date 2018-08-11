@@ -49,6 +49,9 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetButtonDown("Fire1"))
 		{
 			animator.SetTrigger("Attack");
+			var x = FindObjectOfType<Enemy>();
+
+			Debug.Log(x.healthAsPercentage);
 		}
 
 		if (Input.GetButtonDown("Fire2"))
