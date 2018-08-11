@@ -6,12 +6,15 @@ public class PlayerController : MonoBehaviour
 {
 
 	public bool thirdPerson = true;
-
+	public bool toggleSword = false;
+	
 	public float Horizontal { get { return m_horizontal; } }
 	public float Vertical { get { return m_vertical; } }
 
 	[SerializeField] float maxTurnSpeed = 500f;
 	float rotation = 0.0f;
+
+	[SerializeField] GameObject Sword;
 	
 	float m_horizontal = 0.0f;
 	float m_vertical = 0.0f;
@@ -45,6 +48,7 @@ public class PlayerController : MonoBehaviour
 	{
 		GetAxes();
 		SetAnimator();
+		ToggleSword();
 
 		if (Input.GetButtonDown("Fire1"))
 		{
@@ -111,6 +115,18 @@ public class PlayerController : MonoBehaviour
 			targetVector = new Vector3(1.0f, rotation, 1.0f); // TODO see if this is needed
 			transform.eulerAngles += Vector3.up * rotation * maxTurnSpeed * Time.deltaTime;
 
+		}
+	}
+
+	void ToggleSword()
+	{
+		if(toggleSword)
+		{
+			Sword.gameObject.SetActive(true);
+		}
+		else
+		{
+			Sword.gameObject.SetActive(false);
 		}
 	}
 
