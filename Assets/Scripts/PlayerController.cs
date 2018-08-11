@@ -50,7 +50,11 @@ public class PlayerController : MonoBehaviour
 		{
 			animator.SetTrigger("Attack");
 			var x = FindObjectOfType<Enemy>();
-
+			//Debug.Log(x.healthAsPercentage);
+			//x.healthAsPercentage = x.healthAsPercentage - 30f;
+			x.CurrentHealthPoints = x.CurrentHealthPoints - 30f;
+			//x.healthAsPercentage = 50f;
+			
 			Debug.Log(x.healthAsPercentage);
 		}
 

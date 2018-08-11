@@ -8,11 +8,27 @@ public class Enemy : MonoBehaviour {
 
 	float currentHealthPoints = 100f;
 
+	public float CurrentHealthPoints
+	{
+		get
+		{
+			return currentHealthPoints;
+		}
+		set
+		{
+			currentHealthPoints = value;
+		}
+	}
+
 	public float healthAsPercentage
 	{
 		get
 		{
 			return currentHealthPoints / maxHealthPoints;
+		}
+		set
+		{
+			currentHealthPoints = value;
 		}
 	}
 }
