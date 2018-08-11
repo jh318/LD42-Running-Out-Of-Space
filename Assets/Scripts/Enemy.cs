@@ -33,14 +33,11 @@ public class Enemy : MonoBehaviour {
 		agent = GetComponent<NavMeshAgent>();
 		animator = GetComponent<Animator>();
 		player = FindObjectOfType<PlayerController>();
-
-		Debug.Log(agent);
 	}
 
 	void Update()
 	{
 		SetDestination(player.transform.position);
-		Debug.Log(agent.velocity);
 		m_horizontalVelocity = agent.velocity.x;
 		m_forwardVelocity = agent.velocity.z;
 		UpdateAnimator();

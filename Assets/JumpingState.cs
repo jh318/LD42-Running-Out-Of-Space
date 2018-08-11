@@ -2,29 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RunState : StateMachineBehaviour 
-{	
+public class JumpingState : StateMachineBehaviour 
+{
+	Rigidbody body;
 	PlayerController player;
 
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
 	{
-		player = FindObjectOfType<PlayerController>();
+		body = animator.gameObject.GetComponent<Rigidbody>();
+		player = animator.gameObject.GetComponent<PlayerController>();
+		animator.SetBool("CanJump", false);
+		animator.SetBool("IsJumping", true);
+		animator.ResetTrigger("Landing"); // Reseolve bug with trigger getting set at start (due to player positioning probably)
 
-		animator.SetBool("CanJump", true);
 	}
-	
+
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
-	{
-		float horizontal = Mathf.Abs(animator.GetFloat("Horizontal"));
-		float vertical = Mathf.Abs(animator.GetFloat("Vertical"));
-		if(horizontal < 0.1f && vertical < 0.1f)
-		{
-			animator.SetBool("IsIdle", true);
-			animator.SetBool("IsRunning", false);
-		}	
-	}
+	//override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+	//
+	//}
 
 	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
 	//override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {

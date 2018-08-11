@@ -12,10 +12,10 @@ public class PlayerController : MonoBehaviour
 	public float Vertical { get { return m_vertical; } }
 
 	[SerializeField] float maxTurnSpeed = 500f;
-	float rotation = 0.0f;
-
+	[SerializeField] float jumpForce = 5f;
 	[SerializeField] GameObject Sword;
 	
+	float rotation = 0.0f;
 	float m_horizontal = 0.0f;
 	float m_vertical = 0.0f;
 	float m_horizontalRaw = 0.0f;
@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
 	Animator animator;
 	ThirdPersonCamera thirdPersonCamera;
+	Rigidbody body;
 
 	void Awake()
 	{
@@ -37,7 +38,8 @@ public class PlayerController : MonoBehaviour
 	void Start()
 	{
 		animator = GetComponent<Animator>(); // Assuming both are on root
-		
+		body = GetComponentInChildren<Rigidbody>();
+
 		if (thirdPerson)
 		{
 			thirdPersonCamera = GameObject.FindObjectOfType<ThirdPersonCamera>().GetComponent<ThirdPersonCamera>();
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
 		GetAxes();
 		SetAnimator();
 		ToggleSword();
+		Jump();
 
 		if (Input.GetButtonDown("Fire1"))
 		{
@@ -89,6 +92,7 @@ public class PlayerController : MonoBehaviour
 			animator.SetFloat("Horizontal", m_horizontal);
 			animator.SetFloat("Vertical", m_vertical);
 			animator.SetFloat("Speed", Mathf.Abs(m_horizontal) + Mathf.Abs(m_vertical));
+			animator.SetFloat("JumpVelocity", body.velocity.y);
 		}
 	}
 
@@ -127,6 +131,36 @@ public class PlayerController : MonoBehaviour
 		else
 		{
 			Sword.gameObject.SetActive(false);
+		}
+	}
+
+	void Jump()
+	{
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			if(animator.GetBool("CanJump") && !animator.GetBool("IsJumping"))
+			{
+				animator.applyRootMotion = false;
+				body.velocity += Vector3.up * jumpForce;
+			}
+		}
+	}
+
+	void Land()
+	{
+		
+	}
+
+	void OnCollisionEnter(Collision c)
+	{
+		float dotProduct = Vector3.Dot(c.gameObject.transform.up, transform.up);
+		if (dotProduct > 0.9f)
+		{
+			Debug.Log("Landed");
+			animator.SetBool("CanJump", true);
+			animator.SetBool("IsJumping", false);
+			animator.SetTrigger("Landing");
+			animator.applyRootMotion = true;
 		}
 	}
 
