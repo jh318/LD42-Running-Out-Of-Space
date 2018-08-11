@@ -15,11 +15,9 @@ public class ThirdPersonCamera : MonoBehaviour
 	bool cursorLock = false;
 	float m_MouseX = 0.0f;
 	float m_MouseY = 0.0f;
-	bool active = true;
 
 	void Start()
 	{
-		active = true;
 		targetCamera.transform.parent = pivot.transform;
 		targetObject.transform.parent = targetObject.transform;
 

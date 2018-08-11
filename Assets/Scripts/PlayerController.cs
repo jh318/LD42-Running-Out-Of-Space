@@ -28,11 +28,13 @@ public class PlayerController : MonoBehaviour
 
 	void Awake()
 	{
-		animator = GetComponent<Animator>(); // Assuming both are on root
+		
 	}
 
 	void Start()
 	{
+		animator = GetComponent<Animator>(); // Assuming both are on root
+		
 		if (thirdPerson)
 		{
 			thirdPersonCamera = GameObject.FindObjectOfType<ThirdPersonCamera>().GetComponent<ThirdPersonCamera>();
@@ -73,9 +75,9 @@ public class PlayerController : MonoBehaviour
 	{
 		if (animator != null)
 		{
-			// animator.SetFloat("Horizontal", m_horizontal);
-			// animator.SetFloat("Vertical", m_vertical);
-			// animator.SetFloat("Speed", Mathf.Abs(m_horizontal) + Mathf.Abs(m_vertical));
+			animator.SetFloat("Horizontal", m_horizontal);
+			animator.SetFloat("Vertical", m_vertical);
+			animator.SetFloat("Speed", Mathf.Abs(m_horizontal) + Mathf.Abs(m_vertical));
 		}
 	}
 
@@ -99,7 +101,7 @@ public class PlayerController : MonoBehaviour
 				rotation = Mathf.Sign(rotation);
 			}
 
-			targetVector = new Vector3(1.0f, rotation, 1.0f);
+			targetVector = new Vector3(1.0f, rotation, 1.0f); // TODO see if this is needed
 			transform.eulerAngles += Vector3.up * rotation * maxTurnSpeed * Time.deltaTime;
 
 		}
