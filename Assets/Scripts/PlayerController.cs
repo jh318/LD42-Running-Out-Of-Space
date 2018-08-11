@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetButtonDown("Fire1"))
 		{
-			// animator.SetTrigger("Attack");
+			animator.SetTrigger("Attack");
 		}
 
 		if (Input.GetButtonDown("Fire2"))
