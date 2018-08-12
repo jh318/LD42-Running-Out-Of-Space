@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Player_LightAttk2
+  m_Name: Player_RunningAttk2
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -39507,14 +39507,6 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 0
-    functionName: FP_AttackName
-    data: 
-    objectReferenceParameter: {fileID: 11400000, guid: 86715f99590254741b5ca2ef3bd8633d,
-      type: 2}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 0.016666668
     functionName: FP_CancelWindowOn
     data: 
@@ -39522,22 +39514,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.11666667
-    functionName: FP_HitboxOn
-    data: Light Attack 2
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.45
+  - time: 0.73333335
     functionName: FP_CancelWindowOff
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.48333332
-    functionName: FP_HitboxOff
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

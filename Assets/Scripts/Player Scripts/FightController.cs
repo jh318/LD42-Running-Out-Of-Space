@@ -26,7 +26,7 @@ public class FightController : MonoBehaviour
 	{
 		if (cancelWindow)
 		{
-			FP_Cancel();
+			Cancel();
 		}
 	}
 
@@ -65,9 +65,9 @@ public class FightController : MonoBehaviour
 		cancelWindow = false;
 	}
 
-	void FP_Cancel()
+	void Cancel()
 	{
-		if (Input.GetButtonDown("Fire1") && animator.GetBool("IsAttacking"))
+		if (Input.GetButtonDown("Fire1"))
 		{
 			animator.SetTrigger("Cancel"); //TODO Set up to interace with player anim
 		}
