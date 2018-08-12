@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour 
+{
 
 	[SerializeField] float maxHealthPoints = 100f;
 
@@ -12,9 +13,13 @@ public class Enemy : MonoBehaviour {
 	float m_horizontalVelocity;
 	float m_forwardVelocity;
 
+	GameObject target;
+
 	PlayerController player;
 	NavMeshAgent agent;
 	Animator animator;
+
+
 
 	public float CurrentHealthPoints
 	{
@@ -28,18 +33,22 @@ public class Enemy : MonoBehaviour {
 		set { currentHealthPoints = value; }
 	}
 
+	enum States {Chase, Attack};
+
+
 	void Start()
 	{
 		agent = GetComponent<NavMeshAgent>();
 		animator = GetComponent<Animator>();
 		player = FindObjectOfType<PlayerController>();
+		target = player.gameObject;
+
+		StartCoroutine(StartAI());
 	}
 
 	void Update()
 	{
-		SetDestination(player.transform.position);
-		m_horizontalVelocity = agent.velocity.x;
-		m_forwardVelocity = agent.velocity.z;
+
 		UpdateAnimator();
 	}
 
@@ -52,6 +61,56 @@ public class Enemy : MonoBehaviour {
 	{
 		animator.SetFloat("HorizontalVelocity", m_horizontalVelocity);
 		animator.SetFloat("ForwardVelocity", m_forwardVelocity);
+	}
+
+	void AttackState()
+	{
+		Debug.Log("I have arrived!");
+		animator.SetBool("NearPlayer", true);
+	}
+
+	IEnumerator NearPlayer()
+	{
+		while(animator.GetBool("NearPlayer"))
+		{
+			Debug.Log("I am near the player!");
+			yield return new WaitForSeconds(1f);
+		}
+	}
+
+	void ChaseState()
+	{
+		animator.SetBool("NearPlayer", false);
+		animator.SetBool("CanAttack", false);
+		SetDestination(player.transform.position);
+		m_horizontalVelocity = agent.velocity.x;
+		m_forwardVelocity = agent.velocity.z;
+	}
+
+	void CheckState()
+	{
+		float targetDistance = Vector3.Distance(transform.position, target.transform.position);
+		if (targetDistance <= agent.stoppingDistance)
+		{
+			AttackState();
+			Debug.Log("I should attack");
+		}
+		else if (targetDistance >= agent.stoppingDistance)
+		{
+			Debug.Log("Chasing");
+			ChaseState();
+		}
+	}
+
+	IEnumerator StartAI()
+	{
+		yield return new WaitForSeconds(1f); // Need to wait for navmesh stuff to initialize
+
+		while(true)
+		{
+			CheckState();
+			yield return new WaitForEndOfFrame();
+		}
 	}
 
 }

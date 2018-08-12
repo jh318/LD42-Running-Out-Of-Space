@@ -2,22 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpingState : StateMachineBehaviour 
-{
-	Rigidbody body;
-	PlayerController player;
+public class Enemy_NearPlayer : StateMachineBehaviour {
 
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
 	{
-		body = animator.gameObject.GetComponent<Rigidbody>();
-		player = animator.gameObject.GetComponent<PlayerController>();
-		animator.SetBool("CanJump", false);
-		animator.SetBool("IsJumping", true);
-		animator.ResetTrigger("Landing"); // Reseolve bug with trigger getting set at start (due to player positioning probably)
-		animator.SetBool("IsIdle", false);
-		animator.SetBool("IsRunning", false);
-
+		animator.SetBool("CanAttack", true);
 	}
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
