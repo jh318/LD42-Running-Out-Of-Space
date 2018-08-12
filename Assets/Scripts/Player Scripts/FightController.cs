@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 //FP - Fight Property (label to help find methods easier in inspector)
 
@@ -29,13 +30,13 @@ public class FightController : MonoBehaviour
 		}
 	}
 
-	void FP_HitboxOn(string techname)
+	void FP_HitboxOn(string nameOfHitbox)
 	{
 		if (playerHitboxes != null)
 		{
 			foreach (PlayerHitBox hitbox in playerHitboxes)
 			{
-				if (hitbox.name == techname)
+				if (hitbox.name == nameOfHitbox)
 				{
 					hitbox.GetComponent<Collider>().enabled = true;
 					activeHitbox = hitbox.gameObject;
@@ -49,7 +50,7 @@ public class FightController : MonoBehaviour
 	{
 		if (activeHitbox != null)
 		{
-			activeHitbox.SetActive(false);
+			activeHitbox.GetComponent<Collider>().enabled = false;			
 			activeHitbox = null;
 		}
 	}
@@ -85,7 +86,11 @@ public class FightController : MonoBehaviour
 		{
 			Enemy enemy = g.GetComponent<Enemy>();
 			enemy.CurrentHealthPoints = enemy.CurrentHealthPoints - 30f;
-
+			if(enemy.GetComponent<NavMeshAgent>()) // TODO move this to the enemy if possible
+			{
+				enemy.GetComponent<NavMeshAgent>().enabled = false;
+			}
+			SpecialPropertiesCheck(currentTechnique, enemy.gameObject);
 		}
 	}
 
@@ -102,10 +107,11 @@ public class FightController : MonoBehaviour
 		}
 	}
 
-	void SpecialPrpertiesCheck(Technique tech, GameObject target)
+	void SpecialPropertiesCheck(Technique tech, GameObject target)
 	{
 		if (target.GetComponent<Rigidbody>())
 		{
+			Debug.Log("Performing special attack");
 			if (tech.launch)
 			{
 				target.GetComponent<Rigidbody>().velocity = Vector3.zero;
