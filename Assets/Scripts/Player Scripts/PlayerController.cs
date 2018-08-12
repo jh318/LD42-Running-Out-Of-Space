@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
 
 	public bool thirdPerson = true;
-	public bool toggleSword = false;
 	
 	public float Horizontal { get { return m_horizontal; } }
 	public float Vertical { get { return m_vertical; } }
@@ -14,6 +13,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] float maxTurnSpeed = 500f;
 	[SerializeField] float jumpForce = 5f;
 	[SerializeField] GameObject Sword;
+	[SerializeField] float swordDrawTime = 3f;
+
 	
 	float rotation = 0.0f;
 	float m_horizontal = 0.0f;
@@ -43,7 +44,6 @@ public class PlayerController : MonoBehaviour
 	{
 		GetAxes();
 		SetAnimator();
-		ToggleSword();
 		Jump();
 		AttackInputs();
 		ThirdPersonCamera();
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void ToggleSword()
+	void ToggleSword(bool toggleSword)
 	{
 		if(toggleSword)
 		{
@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetButtonDown("Fire1"))
 		{
 			animator.SetTrigger("Attack");		
-			swordTimer = 3;
+			swordTimer = swordDrawTime;
 		}
 	}
 
@@ -196,15 +196,13 @@ public class PlayerController : MonoBehaviour
 		{
 			if(swordTimer >= 0)
 			{
-				toggleSword = true;
-				ToggleSword();
+				ToggleSword(true);
 				while(swordTimer >= 0)
 				{
 					swordTimer -= Time.deltaTime;
 					yield return new WaitForEndOfFrame();
 				}
-				toggleSword = false;
-				ToggleSword();
+				ToggleSword(false);
 			}
 			yield return new WaitForEndOfFrame();
 		}

@@ -41,7 +41,7 @@ public class Enemy_FightController : MonoBehaviour
 	{
 		if (activeHitbox != null)
 		{
-			activeHitbox.SetActive(false);
+			activeHitbox.GetComponent<Collider>().enabled = false;	
 			activeHitbox = null;
 		}
 	}

@@ -10,8 +10,10 @@ public class Enemy : MonoBehaviour
 
 
 	[SerializeField] float maxHealthPoints = 100f;
+	[SerializeField] GameObject Sword;
+	[SerializeField] float swordDrawTime = 3f;
 
-
+	float swordTimer;
 	float currentHealthPoints = 100f;
 
 	float m_horizontalVelocity;
@@ -48,6 +50,8 @@ public class Enemy : MonoBehaviour
 		target = player.gameObject;
 
 		StartCoroutine(StartAI());
+		StartCoroutine(SwordStatus());
+
 	}
 
 	void Update()
@@ -108,6 +112,7 @@ public class Enemy : MonoBehaviour
 	{
 		Debug.Log("I have arrived!");
 		animator.SetBool("NearPlayer", true);
+		swordTimer = swordDrawTime;
 	}
 
 	void HitStunState()
@@ -168,4 +173,44 @@ public class Enemy : MonoBehaviour
 		Destroy(gameObject);
 	}
 
+	IEnumerator SwordStatus()
+	{
+		while (true)
+		{
+			if(swordTimer >= 0)
+			{
+				ToggleSword(true);
+				while(swordTimer >= 0)
+				{
+					swordTimer -= Time.deltaTime;
+					yield return new WaitForEndOfFrame();
+				}
+				ToggleSword(false);
+			}
+			yield return new WaitForEndOfFrame();
+		}
+		
+	}
+
+	void ToggleSword(bool toggleSword)
+	{
+		if(toggleSword)
+		{
+			var x = Sword.GetComponentsInChildren<ParticleSystem>();
+			foreach (ParticleSystem p in x)
+			{
+				var emission = p.emission;
+				emission.enabled = true;
+			}
+		}
+		else
+		{
+			var x = Sword.GetComponentsInChildren<ParticleSystem>();
+			foreach (ParticleSystem p in x)
+			{
+				var emission = p.emission;
+				emission.enabled = false;
+			}
+		}
+	}
 }

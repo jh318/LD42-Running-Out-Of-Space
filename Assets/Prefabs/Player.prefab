@@ -2707,10 +2707,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thirdPerson: 1
-  toggleSword: 0
   maxTurnSpeed: 500
   jumpForce: 10
   Sword: {fileID: 1801948994760810}
+  swordDrawTime: 3
 --- !u!114 &114489344518626232
 MonoBehaviour:
   m_ObjectHideFlags: 1
