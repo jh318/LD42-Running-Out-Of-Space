@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Fire2"))
 		{
-			// animator.SetTrigger("Attack2");
+			animator.SetTrigger("SpecialAttack");
 		}
 	}
 

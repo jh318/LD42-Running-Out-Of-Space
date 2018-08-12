@@ -124,6 +124,8 @@ public class FightController : MonoBehaviour
 			}
 			else if (tech.juggle)
 			{
+				target.GetComponent<Enemy>().juggled = true;
+				target.GetComponent<Enemy>().JuggleState();
 				targetBody.velocity = Vector3.zero;
 				targetBody.AddForce(Vector3.up * tech.force, ForceMode.Impulse);
 			}

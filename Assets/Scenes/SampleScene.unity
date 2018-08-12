@@ -4817,7 +4817,7 @@ GameObject:
   - component: {fileID: 277645411}
   m_Layer: 0
   m_Name: Ground Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6074,7 +6074,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1085751543045800, guid: 261d70eb6d00461478a86f421d10b865, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 261d70eb6d00461478a86f421d10b865, type: 2}

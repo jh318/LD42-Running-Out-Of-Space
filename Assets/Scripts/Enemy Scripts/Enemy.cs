@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
 	[HideInInspector] public bool hitStun = false;
 	[HideInInspector] public float hitStunTimer = 0f;
+	[HideInInspector] public bool juggled = false;
 
 
 	[SerializeField] float maxHealthPoints = 100f;
@@ -18,6 +19,8 @@ public class Enemy : MonoBehaviour
 
 	float m_horizontalVelocity;
 	float m_forwardVelocity;
+
+	
 
 	GameObject target;
 
@@ -134,11 +137,27 @@ public class Enemy : MonoBehaviour
 		GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 	}
 
+	public void JuggleState()
+	{
+		StartCoroutine(JuggleStun());
+	}
+
+	IEnumerator JuggleStun()
+	{
+		while(juggled)
+		{
+			hitStunTimer = 5;
+			Debug.Log(hitStunTimer);
+			yield return new WaitForEndOfFrame();
+		}
+	}
+
 	IEnumerator HitStunTime(float time)
 	{
-		while(time >= 0)
+		hitStunTimer = time;
+		while(hitStunTimer >= 0)
 		{
-			time -= Time.deltaTime;
+			hitStunTimer -= Time.deltaTime;
 			yield return new WaitForEndOfFrame();
 		}
 		animator.SetBool("IsHitStun", false);
@@ -211,6 +230,15 @@ public class Enemy : MonoBehaviour
 				var emission = p.emission;
 				emission.enabled = false;
 			}
+		}
+	}
+
+	void OnCollisionEnter(Collision c)
+	{
+		float dotProduct = Vector3.Dot(c.gameObject.transform.up, transform.up);
+		if (dotProduct > 0.9f && c.gameObject.tag == "Ground")
+		{
+			juggled = false;
 		}
 	}
 }
