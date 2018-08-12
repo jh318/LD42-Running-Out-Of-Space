@@ -10,6 +10,10 @@ public class IdleState : StateMachineBehaviour
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
 	{
 		player = FindObjectOfType<PlayerController>();
+		animator.SetBool("IsIdle", true);
+		animator.ResetTrigger("Land");
+		animator.ResetTrigger("Attack");
+		animator.ResetTrigger("SpecialAttack");
 	}
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

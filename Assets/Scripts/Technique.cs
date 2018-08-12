@@ -13,4 +13,8 @@ public class Technique : ScriptableObject
     public bool launch = false;
     public bool juggle = false;
     public bool dizzy = false;
+    public bool alterSelfVelocity = false;
+
+    public Vector3 setVelocity = Vector3.zero;
+    public Vector3 addVelocity = Vector3.zero;
 }

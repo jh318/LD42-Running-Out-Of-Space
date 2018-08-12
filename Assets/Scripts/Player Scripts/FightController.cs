@@ -76,6 +76,7 @@ public class FightController : MonoBehaviour
 	void FP_AttackName(Technique tech)
 	{
 		currentTechnique = tech;
+		UserVelocity(tech);
 	}
 
 	void OnTriggerEnter(Collider c)
@@ -134,6 +135,19 @@ public class FightController : MonoBehaviour
 				//TODO Implement dizzy
 			}
 
+		}
+	}
+
+	void UserVelocity(Technique tech)
+	{
+		if (tech.alterSelfVelocity)
+		{
+			if (gameObject.GetComponent<Rigidbody>())
+			{
+				Rigidbody body = gameObject.GetComponent<Rigidbody>();
+
+				body.velocity = tech.setVelocity;
+			}
 		}
 	}
 

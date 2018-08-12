@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 223eb126cdc0c2d46ba2242ccb107917, type: 3}
-  m_Name: Launch Kick
+  m_Name: Air Attack 1
   m_EditorClassIdentifier: 
   damage: 10
   stun: 0
@@ -18,3 +18,6 @@ MonoBehaviour:
   launch: 0
   juggle: 1
   dizzy: 0
+  alterSelfVelocity: 1
+  setVelocity: {x: 0, y: 8, z: 0}
+  addVelocity: {x: 0, y: 0, z: 0}

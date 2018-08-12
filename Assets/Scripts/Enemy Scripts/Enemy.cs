@@ -146,7 +146,7 @@ public class Enemy : MonoBehaviour
 	{
 		while(juggled)
 		{
-			hitStunTimer = 5;
+			hitStunTimer = 2;
 			Debug.Log(hitStunTimer);
 			yield return new WaitForEndOfFrame();
 		}
@@ -235,8 +235,8 @@ public class Enemy : MonoBehaviour
 
 	void OnCollisionEnter(Collision c)
 	{
-		float dotProduct = Vector3.Dot(c.gameObject.transform.up, transform.up);
-		if (dotProduct > 0.9f && c.gameObject.tag == "Ground")
+		//float dotProduct = Vector3.Dot(c.gameObject.transform.up, transform.up);
+		if (c.gameObject.tag == "Ground")
 		{
 			juggled = false;
 		}
