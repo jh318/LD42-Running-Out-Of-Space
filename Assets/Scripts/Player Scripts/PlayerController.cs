@@ -45,6 +45,14 @@ public class PlayerController : MonoBehaviour
 		Jump();
 		AttackInputs();
 		ThirdPersonCamera();
+
+		if (Input.GetKeyDown(KeyCode.G))
+		{
+			Debug.Log("testing enemy");
+			Enemy x = FindObjectOfType<Enemy>();
+			//x.GetComponent<Rigidbody>().velocity += Vector3.up * 100;
+			x.GetComponent<Rigidbody>().AddForce(Vector3.up * 100, ForceMode.Impulse);
+		}
 	}
 
 	void GetAxes()

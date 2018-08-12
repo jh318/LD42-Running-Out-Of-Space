@@ -4,11 +4,11 @@ using UnityEngine;
 
 //FP - Fight Property (label to help find methods easier in inspector)
 
-public class FightController : MonoBehaviour 
+public class Enemy_FightController : MonoBehaviour 
 {
 	bool cancelWindow = false;
 	GameObject activeHitbox;
-	[SerializeField] PlayerHitBox[] playerHitboxes;
+	[SerializeField] Enemy_HitBox[] Enemy_HitBoxes;
 	//List<GameObject> hitboxes = new List<GameObject>();
 	Technique currentTechnique;
 	Animator animator;
@@ -17,23 +17,15 @@ public class FightController : MonoBehaviour
 	{
 		animator = GetComponent<Animator>();
 		GetHitboxes();
-		//SetupHitboxes();
+		SetupHitboxes();
 	}
 
-
-	void Update()
-	{
-		if (cancelWindow)
-		{
-			FP_Cancel();
-		}
-	}
 
 	void FP_HitboxOn(string techname)
 	{
-		if (playerHitboxes != null)
+		if (Enemy_HitBoxes != null)
 		{
-			foreach (PlayerHitBox hitbox in playerHitboxes)
+			foreach (Enemy_HitBox hitbox in Enemy_HitBoxes)
 			{
 				if (hitbox.name == techname)
 				{
@@ -54,55 +46,25 @@ public class FightController : MonoBehaviour
 		}
 	}
 
-	void FP_CancelWindowOn()
-	{
-		cancelWindow = true;
-	}
-
-	void FP_CancelWindowOff()
-	{
-		cancelWindow = false;
-	}
-
-	void FP_Cancel()
-	{
-		if (Input.GetButtonDown("Fire1") && animator.GetBool("IsAttacking"))
-		{
-			animator.SetTrigger("Cancel"); //TODO Set up to interace with player anim
-		}
-	}
-
 	void FP_AttackName(Technique tech)
 	{
 		currentTechnique = tech;
 	}
 
-	void OnTriggerEnter(Collider c)
-	{
-		GameObject g = c.gameObject;
-
-		if(g.GetComponent<Enemy>())
-		{
-			Enemy enemy = g.GetComponent<Enemy>();
-			enemy.CurrentHealthPoints = enemy.CurrentHealthPoints - 30f;
-
-		}
-	}
-
 	void GetHitboxes()
 	{
-		playerHitboxes = GetComponentsInChildren<PlayerHitBox>();
+		Enemy_HitBoxes = GetComponentsInChildren<Enemy_HitBox>();
 	}
 
 	void SetupHitboxes()
 	{
-		foreach (PlayerHitBox hitbox in playerHitboxes)
+		foreach (Enemy_HitBox hitbox in Enemy_HitBoxes)
 		{
 			hitbox.GetComponent<Collider>().enabled = false;
 		}
 	}
 
-	void SpecialPrpertiesCheck(Technique tech, GameObject target)
+	void SpecialPropertiesCheck(Technique tech, GameObject target)
 	{
 		if (target.GetComponent<Rigidbody>())
 		{
@@ -124,5 +86,17 @@ public class FightController : MonoBehaviour
 		}
 	}
 
+	void OnTriggerEnter(Collider c)
+	{
+		GameObject g = c.gameObject;
+
+		if(g.GetComponent<PlayerController>())
+		{
+			PlayerController target = g.GetComponent<PlayerController>();
+			Debug.Log("Hit the target: " + target.name);
+			//target.CurrentHealthPoints = target.CurrentHealthPoints - 30f; TODO make enemy damage player
+
+		}
+	}
 
 }

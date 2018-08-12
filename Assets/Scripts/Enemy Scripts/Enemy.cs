@@ -54,37 +54,16 @@ public class Enemy : MonoBehaviour
 
 	void SetDestination(Vector3 targetPosition)
 	{
-		agent.SetDestination(targetPosition);
+		if(agent.isActiveAndEnabled)
+		{
+			agent.SetDestination(targetPosition);
+		}
 	}
 
 	void UpdateAnimator()
 	{
 		animator.SetFloat("HorizontalVelocity", m_horizontalVelocity);
 		animator.SetFloat("ForwardVelocity", m_forwardVelocity);
-	}
-
-	void AttackState()
-	{
-		Debug.Log("I have arrived!");
-		animator.SetBool("NearPlayer", true);
-	}
-
-	IEnumerator NearPlayer()
-	{
-		while(animator.GetBool("NearPlayer"))
-		{
-			Debug.Log("I am near the player!");
-			yield return new WaitForSeconds(1f);
-		}
-	}
-
-	void ChaseState()
-	{
-		animator.SetBool("NearPlayer", false);
-		animator.SetBool("CanAttack", false);
-		SetDestination(player.transform.position);
-		m_horizontalVelocity = agent.velocity.x;
-		m_forwardVelocity = agent.velocity.z;
 	}
 
 	void CheckState()
@@ -105,6 +84,31 @@ public class Enemy : MonoBehaviour
 			ChaseState();
 		}
 	}
+
+	void ChaseState()
+	{
+		animator.SetBool("NearPlayer", false);
+		animator.SetBool("CanAttack", false);
+		SetDestination(player.transform.position);
+		m_horizontalVelocity = agent.velocity.x;
+		m_forwardVelocity = agent.velocity.z;
+	}
+
+	void AttackState()
+	{
+		Debug.Log("I have arrived!");
+		animator.SetBool("NearPlayer", true);
+	}
+
+	IEnumerator NearPlayer()
+	{
+		while(animator.GetBool("NearPlayer"))
+		{
+			Debug.Log("I am near the player!");
+			yield return new WaitForSeconds(1f);
+		}
+	}
+
 
 	IEnumerator StartAI()
 	{
