@@ -46,15 +46,9 @@ public class PlayerController : MonoBehaviour
 		SetAnimator();
 		Jump();
 		AttackInputs();
-		ThirdPersonCamera();
+		DodgeShift();
 
-		if (Input.GetKeyDown(KeyCode.G))
-		{
-			Debug.Log("testing enemy");
-			Enemy x = FindObjectOfType<Enemy>();
-			//x.GetComponent<Rigidbody>().velocity += Vector3.up * 100;
-			x.GetComponent<Rigidbody>().AddForce(Vector3.up * 100, ForceMode.Impulse);
-		}
+		ThirdPersonCamera();
 	}
 
 	void GetAxes()
@@ -206,6 +200,36 @@ public class PlayerController : MonoBehaviour
 			}
 			yield return new WaitForEndOfFrame();
 		}
+		
+	}
+
+	void DodgeShift()
+	{
+		if(Input.GetKeyDown(KeyCode.LeftShift))
+		{
+			StartCoroutine((DodgeShiftTime(0.3f)));
+		}
+	}
+
+	IEnumerator DodgeShiftTime(float timer)
+	{
+		animator.applyRootMotion = false;
+		body.velocity += (targetDirection) * 10;
+		animator.SetBool("IsDodgeShift", true);
+		animator.SetTrigger("DodgeShift");
+
+		while(timer >= 0)
+		{
+			timer -= Time.deltaTime;
+			// if (Mathf.Abs(body.velocity.z) < 1f || Mathf.Abs(body.velocity.x) < 1f)
+			// {
+			// 	break;
+			// }
+			yield return new WaitForEndOfFrame();
+		}
+
+		animator.SetBool("IsDodgeShift", false);
+
 		
 	}
 
