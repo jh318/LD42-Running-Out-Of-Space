@@ -6081,6 +6081,11 @@ Prefab:
       propertyPath: m_Mass
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114316536520132046, guid: 261d70eb6d00461478a86f421d10b865,
+        type: 2}
+      propertyPath: maxHealthPoints
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 261d70eb6d00461478a86f421d10b865, type: 2}
   m_IsPrefabAsset: 0

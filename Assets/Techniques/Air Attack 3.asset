@@ -14,7 +14,7 @@ MonoBehaviour:
   damage: 10
   stun: 0
   hitStun: 0.3
-  force: 1000
+  force: -50000
   launch: 0
   juggle: 1
   dizzy: 0
