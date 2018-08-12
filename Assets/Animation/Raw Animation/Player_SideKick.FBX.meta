@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8cb2019a4d3c06141878a74cd4959b7e
+guid: 237d3babd47414c4499fdd8eedc7f32e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -75,8 +75,8 @@ ModelImporter:
     100138: RightThumb3
     100140: RightToe
     100142: RightUpLeg
-    100144: Spine
-    100146: //RootNode
+    100144: //RootNode
+    100146: Spine
     100148: Sword_Hold
     100150: Sword_Hold_Bone
     400000: Bip001 Footsteps
@@ -151,8 +151,8 @@ ModelImporter:
     400138: RightThumb3
     400140: RightToe
     400142: RightUpLeg
-    400144: Spine
-    400146: //RootNode
+    400144: //RootNode
+    400146: Spine
     400148: Sword_Hold
     400150: Sword_Hold_Bone
     4300000: Body
@@ -161,7 +161,7 @@ ModelImporter:
     4300006: Sword_Hold
     4300008: BladeL
     4300010: BladeR
-    7400000: Player_AirAttk2
+    7400000: Player_SideKick
     9500000: //RootNode
     13700000: BladeL
     13700002: BladeR
@@ -207,8 +207,8 @@ ModelImporter:
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'Chest' has translation animation that will
-      be discarded.\n"
+      improve retargeting quality.\n\t'Spine' has translation animation that will
+      be discarded.\n\t'Chest' has translation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -222,10 +222,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Player_AirAttk2
+      name: Player_SideKick
       takeName: Take 001
-      firstFrame: 26
-      lastFrame: 95
+      firstFrame: 0
+      lastFrame: 48
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -410,7 +410,7 @@ ModelImporter:
         weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 25.800001
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
