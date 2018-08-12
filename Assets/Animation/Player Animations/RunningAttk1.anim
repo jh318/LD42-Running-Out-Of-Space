@@ -54022,11 +54022,18 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.75
+  - time: 0
     functionName: FP_AttackName
     data: 
     objectReferenceParameter: {fileID: 11400000, guid: 47b51b9110a560146b046ed736ccce5c,
       type: 2}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.7
+    functionName: FP_HitboxOff
+    data: 
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
