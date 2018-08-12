@@ -90,7 +90,11 @@ public class Enemy : MonoBehaviour
 	void CheckState()
 	{
 		float targetDistance = Vector3.Distance(transform.position, target.transform.position);
-		if (targetDistance <= agent.stoppingDistance)
+		if(currentHealthPoints <= 0)
+		{
+			DestroyEnemy();
+		}
+		else if (targetDistance <= agent.stoppingDistance)
 		{
 			AttackState();
 			Debug.Log("I should attack");
@@ -111,6 +115,12 @@ public class Enemy : MonoBehaviour
 			CheckState();
 			yield return new WaitForEndOfFrame();
 		}
+	}
+
+	void DestroyEnemy()
+	{
+		StopAllCoroutines();
+		Destroy(gameObject);
 	}
 
 }

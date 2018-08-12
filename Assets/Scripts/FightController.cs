@@ -17,7 +17,7 @@ public class FightController : MonoBehaviour
 	{
 		animator = GetComponent<Animator>();
 		GetHitboxes();
-		SetupHitboxes();
+		//SetupHitboxes();
 	}
 
 

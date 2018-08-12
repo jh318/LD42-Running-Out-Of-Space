@@ -30,20 +30,11 @@ public class PlayerController : MonoBehaviour
 	ThirdPersonCamera thirdPersonCamera;
 	Rigidbody body;
 
-	void Awake()
-	{
-		
-	}
-
 	void Start()
 	{
 		animator = GetComponent<Animator>(); // Assuming both are on root
 		body = GetComponentInChildren<Rigidbody>();
-
-		if (thirdPerson)
-		{
-			thirdPersonCamera = GameObject.FindObjectOfType<ThirdPersonCamera>().GetComponent<ThirdPersonCamera>();
-		}
+		CheckForThirdPersion();
 	}
 
 	void Update()
@@ -52,29 +43,8 @@ public class PlayerController : MonoBehaviour
 		SetAnimator();
 		ToggleSword();
 		Jump();
-
-		if (Input.GetButtonDown("Fire1"))
-		{
-			animator.SetTrigger("Attack");
-			var x = FindObjectOfType<Enemy>();
-			//Debug.Log(x.healthAsPercentage);
-			//x.healthAsPercentage = x.healthAsPercentage - 30f;
-			//x.CurrentHealthPoints = x.CurrentHealthPoints - 30f;
-			//x.healthAsPercentage = 50f;
-			
-			Debug.Log(x.healthAsPercentage);
-		}
-
-		if (Input.GetButtonDown("Fire2"))
-		{
-			// animator.SetTrigger("Attack2");
-		}
-
-		if (thirdPerson)
-		{
-			ThirdPersonCamera();
-		}
-
+		AttackInputs();
+		ThirdPersonCamera();
 	}
 
 	void GetAxes()
@@ -96,29 +66,32 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void ThirdPersonCamera()
+	void ThirdPersonCamera() // Player movement dictated by a third person camera
 	{
-		if (thirdPersonCamera != null)
+		if(thirdPerson)
 		{
-			axisDirection = new Vector3(m_horizontalRaw, 0.0f, m_verticalRaw);
-			targetDirection = 
-			(
-				thirdPersonCamera.targetCamera.transform.forward
-				* axisDirection.z
-				+ thirdPersonCamera.targetCamera.transform.right
-				* axisDirection.x
-			);
-			forwardToTargetCrossProduct = Vector3.Cross(transform.forward, targetDirection);
-			rotation = forwardToTargetCrossProduct.y;
-
-			if (Vector3.Dot(transform.forward, targetDirection) < 0.0f)
+			if (thirdPersonCamera != null)
 			{
-				rotation = Mathf.Sign(rotation);
+				axisDirection = new Vector3(m_horizontalRaw, 0.0f, m_verticalRaw);
+				targetDirection = 
+				(
+					thirdPersonCamera.targetCamera.transform.forward
+					* axisDirection.z
+					+ thirdPersonCamera.targetCamera.transform.right
+					* axisDirection.x
+				);
+				forwardToTargetCrossProduct = Vector3.Cross(transform.forward, targetDirection);
+				rotation = forwardToTargetCrossProduct.y;
+
+				if (Vector3.Dot(transform.forward, targetDirection) < 0.0f)
+				{
+					rotation = Mathf.Sign(rotation);
+				}
+
+				targetVector = new Vector3(1.0f, rotation, 1.0f); // TODO see if this is needed
+				transform.eulerAngles += Vector3.up * rotation * maxTurnSpeed * Time.deltaTime;
+
 			}
-
-			targetVector = new Vector3(1.0f, rotation, 1.0f); // TODO see if this is needed
-			transform.eulerAngles += Vector3.up * rotation * maxTurnSpeed * Time.deltaTime;
-
 		}
 	}
 
@@ -146,21 +119,51 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void Land()
-	{
-		
-	}
-
 	void OnCollisionEnter(Collision c)
 	{
 		float dotProduct = Vector3.Dot(c.gameObject.transform.up, transform.up);
 		if (dotProduct > 0.9f)
 		{
-			Debug.Log("Landed");
-			animator.SetBool("CanJump", true);
-			animator.SetBool("IsJumping", false);
-			animator.SetTrigger("Landing");
-			animator.applyRootMotion = true;
+			Land();
+		}
+	}
+
+	void Land()
+	{
+		Debug.Log("Landed");
+		animator.SetBool("CanJump", true);
+		animator.SetBool("IsJumping", false);
+		animator.SetTrigger("Landing");
+		animator.applyRootMotion = true;
+	}
+
+	void CheckForThirdPersion()
+	{
+		if (thirdPerson)
+		{
+			thirdPersonCamera = GameObject.FindObjectOfType<ThirdPersonCamera>().GetComponent<ThirdPersonCamera>();
+		}
+	}
+
+	void AttackInputs()
+	{
+		Attack1();
+		Attack2();
+	}
+
+	void Attack1()
+	{
+		if (Input.GetButtonDown("Fire1"))
+		{
+			animator.SetTrigger("Attack");		
+		}
+	}
+
+	void Attack2()
+	{
+		if (Input.GetButtonDown("Fire2"))
+		{
+			// animator.SetTrigger("Attack2");
 		}
 	}
 
