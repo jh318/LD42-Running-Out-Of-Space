@@ -115,9 +115,10 @@ public class FightController : MonoBehaviour
 		if (target.GetComponent<Rigidbody>())
 		{
 			Rigidbody targetBody = target.GetComponent<Rigidbody>();
+			targetBody.constraints = RigidbodyConstraints.None;
+			
 			if (tech.launch)
 			{
-				targetBody.constraints = RigidbodyConstraints.None; // TODO Reset in enemy states
 				targetBody.velocity = Vector3.zero;
 				targetBody.AddForce(transform.forward * tech.force, ForceMode.Impulse);
 			}

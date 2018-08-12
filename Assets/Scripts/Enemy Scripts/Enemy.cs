@@ -124,16 +124,21 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
+	void RecoveryState()
+	{
+		GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+	}
+
 	IEnumerator HitStunTime(float time)
 	{
 		while(time >= 0)
 		{
-			Debug.Log(time);
 			time -= Time.deltaTime;
 			yield return new WaitForEndOfFrame();
 		}
 		animator.SetBool("IsHitStun", false);
 		hitStun = false;
+		RecoveryState();
 	}
 
 	IEnumerator NearPlayer()

@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 966766f4829d6ad419eaaf7cf0712f85, type: 2}
   m_HaloStrength: 0.5
@@ -5113,6 +5113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2a03d6dec5e394a9a9b1e7f5824170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitStun: 0
+  hitStunTimer: 0
   maxHealthPoints: 100
 --- !u!95 &167071748
 Animator:
@@ -5186,7 +5188,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 124
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &170076733
 GameObject:
@@ -6980,7 +6982,7 @@ GameObject:
   - component: {fileID: 2034610542}
   - component: {fileID: 2034610541}
   m_Layer: 9
-  m_Name: Cube (1)
+  m_Name: Running Attack 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
