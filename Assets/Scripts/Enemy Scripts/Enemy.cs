@@ -5,8 +5,12 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour 
 {
+	[HideInInspector] public bool hitStun = false;
+	[HideInInspector] public float hitStunTimer = 0f;
+
 
 	[SerializeField] float maxHealthPoints = 100f;
+
 
 	float currentHealthPoints = 100f;
 
@@ -73,14 +77,20 @@ public class Enemy : MonoBehaviour
 		{
 			DestroyEnemy();
 		}
+		else if(hitStun)
+		{
+			HitStunState();
+		}
 		else if (targetDistance <= agent.stoppingDistance)
 		{
+			agent.enabled = false;
 			AttackState();
 			Debug.Log("I should attack");
 		}
 		else if (targetDistance >= agent.stoppingDistance)
 		{
 			Debug.Log("Chasing");
+			agent.enabled = true;
 			ChaseState();
 		}
 	}
@@ -98,6 +108,32 @@ public class Enemy : MonoBehaviour
 	{
 		Debug.Log("I have arrived!");
 		animator.SetBool("NearPlayer", true);
+	}
+
+	void HitStunState()
+	{
+		if(!animator.GetBool("IsHitStun"))
+		{
+			animator.SetTrigger("Hit");
+			animator.SetBool("IsHitStun", true);
+			StartCoroutine(HitStunTime(hitStunTimer));
+		}
+		else
+		{
+			//Wait for end of coroutine
+		}
+	}
+
+	IEnumerator HitStunTime(float time)
+	{
+		while(time >= 0)
+		{
+			Debug.Log(time);
+			time -= Time.deltaTime;
+			yield return new WaitForEndOfFrame();
+		}
+		animator.SetBool("IsHitStun", false);
+		hitStun = false;
 	}
 
 	IEnumerator NearPlayer()

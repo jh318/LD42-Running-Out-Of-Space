@@ -85,6 +85,7 @@ public class FightController : MonoBehaviour
 		if(g.GetComponent<Enemy>())
 		{
 			Enemy enemy = g.GetComponent<Enemy>();
+			enemy.hitStun = true;
 			enemy.CurrentHealthPoints = enemy.CurrentHealthPoints - 30f;
 			if(enemy.GetComponent<NavMeshAgent>()) // TODO move this to the enemy if possible
 			{
@@ -109,18 +110,21 @@ public class FightController : MonoBehaviour
 
 	void SpecialPropertiesCheck(Technique tech, GameObject target)
 	{
+		target.GetComponent<Enemy>().hitStunTimer = tech.hitStun;
+
 		if (target.GetComponent<Rigidbody>())
 		{
-			Debug.Log("Performing special attack");
+			Rigidbody targetBody = target.GetComponent<Rigidbody>();
 			if (tech.launch)
 			{
-				target.GetComponent<Rigidbody>().velocity = Vector3.zero;
-				target.GetComponent<Rigidbody>().AddForce(transform.forward * tech.force, ForceMode.Impulse);
+				targetBody.constraints = RigidbodyConstraints.None; // TODO Reset in enemy states
+				targetBody.velocity = Vector3.zero;
+				targetBody.AddForce(transform.forward * tech.force, ForceMode.Impulse);
 			}
 			else if (tech.juggle)
 			{
-				target.GetComponent<Rigidbody>().velocity = Vector3.zero;
-				target.GetComponent<Rigidbody>().AddForce(Vector3.up * tech.force, ForceMode.Impulse);
+				targetBody.velocity = Vector3.zero;
+				targetBody.AddForce(Vector3.up * tech.force, ForceMode.Impulse);
 			}
 			else if (tech.dizzy)
 			{

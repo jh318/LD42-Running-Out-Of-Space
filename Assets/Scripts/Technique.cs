@@ -8,6 +8,7 @@ public class Technique : ScriptableObject
 	//public string name = "";
     public int damage = 0;
     public int stun = 0;
+    public float hitStun = 0;
     public float force = 0.0f;
     public bool launch = false;
     public bool juggle = false;
