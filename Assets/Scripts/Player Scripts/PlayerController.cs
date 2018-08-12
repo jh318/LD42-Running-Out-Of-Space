@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 	float m_vertical = 0.0f;
 	float m_horizontalRaw = 0.0f;
 	float m_verticalRaw = 0.0f;
+	float swordTimer = 0.0f;
 	
 	Vector3 targetDirection;
 	Vector3 axisDirection;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
 		animator = GetComponent<Animator>(); // Assuming both are on root
 		body = GetComponentInChildren<Rigidbody>();
 		CheckForThirdPersion();
+		StartCoroutine(SwordStatus());
 	}
 
 	void Update()
@@ -107,11 +109,23 @@ public class PlayerController : MonoBehaviour
 	{
 		if(toggleSword)
 		{
-			Sword.gameObject.SetActive(true);
+			var x = Sword.GetComponentsInChildren<ParticleSystem>();
+			foreach (ParticleSystem p in x)
+			{
+				var emission = p.emission;
+				emission.enabled = true;
+			}
+			//Sword.gameObject.SetActive(true);
 		}
 		else
 		{
-			Sword.gameObject.SetActive(false);
+			var x = Sword.GetComponentsInChildren<ParticleSystem>();
+			foreach (ParticleSystem p in x)
+			{
+				var emission = p.emission;
+				emission.enabled = false;
+			}
+			//Sword.gameObject.SetActive(false);
 		}
 	}
 
@@ -164,6 +178,7 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetButtonDown("Fire1"))
 		{
 			animator.SetTrigger("Attack");		
+			swordTimer = 3;
 		}
 	}
 
@@ -173,6 +188,27 @@ public class PlayerController : MonoBehaviour
 		{
 			// animator.SetTrigger("Attack2");
 		}
+	}
+
+	IEnumerator SwordStatus()
+	{
+		while (true)
+		{
+			if(swordTimer >= 0)
+			{
+				toggleSword = true;
+				ToggleSword();
+				while(swordTimer >= 0)
+				{
+					swordTimer -= Time.deltaTime;
+					yield return new WaitForEndOfFrame();
+				}
+				toggleSword = false;
+				ToggleSword();
+			}
+			yield return new WaitForEndOfFrame();
+		}
+		
 	}
 
 }
