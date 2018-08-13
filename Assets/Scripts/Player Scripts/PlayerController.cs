@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] float jumpForce = 5f;
 	[SerializeField] GameObject Sword;
 	[SerializeField] float swordDrawTime = 3f;
+	[SerializeField] float boostPower = 10f;
 
 	
 	float rotation = 0.0f;
@@ -177,6 +178,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Fire1"))
 		{
+			//transform.localEulerAngles = new Vector3(0f, thirdPersonCamera.transform.eulerAngles.y, 0f);
 			animator.SetTrigger("Attack");		
 			swordTimer = swordDrawTime;
 		}
@@ -220,7 +222,9 @@ public class PlayerController : MonoBehaviour
 	IEnumerator DodgeShiftTime(float timer)
 	{
 		animator.applyRootMotion = false;
-		body.velocity += (targetDirection) * 10;
+		body.velocity = Vector3.zero;
+		body.velocity += (targetDirection) * boostPower;
+		//body.AddForce(targetDirection * boostPower * body.mass, ForceMode.Impulse);
 		animator.SetBool("IsDodgeShift", true);
 		animator.SetTrigger("DodgeShift");
 

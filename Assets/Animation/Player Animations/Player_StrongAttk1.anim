@@ -53680,7 +53680,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.0666667
+  - time: 1.05
     functionName: FP_CancelWindowOff
     data: 
     objectReferenceParameter: {fileID: 0}
