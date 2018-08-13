@@ -27,7 +27,6 @@ public class PlayerHealth : MonoBehaviour
 		currentEnergy += energyRegeneration * Time.deltaTime;
 		currentEnergy = Mathf.Clamp(currentEnergy, 0f, maxEnergy);
 		SetEnergyBar();
-		Debug.Log(currentEnergy); 
 	}
 
 	public void DamagePlayer(float damage)

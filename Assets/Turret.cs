@@ -36,4 +36,9 @@ public class Turret : MonoBehaviour {
 	{
 		transform.LookAt(player.transform.position);
 	}
+
+	public void DestroyTurret()
+	{
+		Destroy(gameObject);
+	}
 }

@@ -94,6 +94,12 @@ public class FightController : MonoBehaviour
 			}
 			SpecialPropertiesCheck(currentTechnique, enemy.gameObject);
 		}
+
+		if(c.GetComponent<Turret>())
+		{
+			Debug.Log("Hit Turret");
+			c.GetComponent<Turret>().DestroyTurret();
+		}
 	}
 
 	void GetHitboxes()
