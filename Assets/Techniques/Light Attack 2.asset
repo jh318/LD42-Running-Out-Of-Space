@@ -14,7 +14,10 @@ MonoBehaviour:
   damage: 10
   stun: 0
   hitStun: 0.3
-  force: 100
-  launch: 0
+  force: 300
+  launch: 1
   juggle: 0
   dizzy: 0
+  alterSelfVelocity: 0
+  setVelocity: {x: 0, y: 0, z: 0}
+  addVelocity: {x: 0, y: 0, z: 0}
