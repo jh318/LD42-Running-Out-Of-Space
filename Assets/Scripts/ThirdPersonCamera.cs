@@ -32,7 +32,7 @@ public class ThirdPersonCamera : MonoBehaviour
 		m_MouseX = Input.GetAxis("Mouse X");
 		m_MouseY = Input.GetAxis("Mouse Y");
 
-		LockCursor();
+		//LockCursor();
 	}
 
 	void LateUpdate()

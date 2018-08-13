@@ -40,7 +40,10 @@ public class FightController : MonoBehaviour
 				{
 					hitbox.GetComponent<Collider>().enabled = true;
 					activeHitbox = hitbox.gameObject;
-					break;
+				}
+				else
+				{
+					hitbox.GetComponent<Collider>().enabled = false;
 				}
 			}
 		}
