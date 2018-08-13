@@ -6,6 +6,8 @@ public class Turret : MonoBehaviour {
 
 	[SerializeField] Vector3 goToPosition;
 	[SerializeField] float speed = 1f;
+	[SerializeField] float cooldown = 5f;
+	[SerializeField] float firePeriod = 10f;
 
 	[SerializeField] ParticleSystem gun;
 
@@ -16,19 +18,24 @@ public class Turret : MonoBehaviour {
 	void Start()
 	{
 		player = FindObjectOfType<PlayerController>();
+		StartCoroutine(FireRoutine());
 	}
 	
 	void Update()
 	{
 		LookAtPlayer();
-
-		if (Input.GetKeyDown(KeyCode.T))
-		{
-			fire = !fire;
-			FireGun(fire);
-		}
-
 		MoveToPosition();
+	}
+
+	IEnumerator FireRoutine()
+	{
+		while(true)
+		{
+			FireGun(false);
+			yield return new WaitForSeconds(cooldown);
+			FireGun(true);
+			yield return new WaitForSeconds(firePeriod);
+		}
 	}
 
 	void FireGun(bool f)
@@ -44,6 +51,7 @@ public class Turret : MonoBehaviour {
 
 	public void DestroyTurret()
 	{
+		StopAllCoroutines();
 		Destroy(gameObject);
 	}
 
