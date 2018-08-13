@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour {
 
+	[SerializeField] Vector3 goToPosition;
+	[SerializeField] float speed = 1f;
+
 	[SerializeField] ParticleSystem gun;
+
 	bool fire = false;
 
 	PlayerController player;
@@ -12,7 +16,6 @@ public class Turret : MonoBehaviour {
 	void Start()
 	{
 		player = FindObjectOfType<PlayerController>();
-
 	}
 	
 	void Update()
@@ -24,6 +27,8 @@ public class Turret : MonoBehaviour {
 			fire = !fire;
 			FireGun(fire);
 		}
+
+		MoveToPosition();
 	}
 
 	void FireGun(bool f)
@@ -41,4 +46,13 @@ public class Turret : MonoBehaviour {
 	{
 		Destroy(gameObject);
 	}
+
+	void MoveToPosition()
+	{
+		float step = speed * Time.deltaTime;
+		transform.position = Vector3.MoveTowards(transform.position, goToPosition, step);
+	}
+
+
+
 }

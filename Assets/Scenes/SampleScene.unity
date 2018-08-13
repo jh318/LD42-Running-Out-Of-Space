@@ -5895,6 +5895,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1303281400}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1406548306 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1669399677657556, guid: 28aa05e4af6f56c4fb764721012571ee,
+    type: 2}
+  m_PrefabInternal: {fileID: 1721386146}
+--- !u!114 &1406548310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1406548306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126888c65d80d8f40aacded52c55618d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1482611054
 GameObject:
   m_ObjectHideFlags: 0
@@ -10746,7 +10762,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4509402106821366, guid: 28aa05e4af6f56c4fb764721012571ee, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 77.4
       objectReference: {fileID: 0}
     - target: {fileID: 4509402106821366, guid: 28aa05e4af6f56c4fb764721012571ee, type: 2}
       propertyPath: m_LocalPosition.y
@@ -10784,6 +10800,16 @@ Prefab:
     - target: {fileID: 198725051693838576, guid: 28aa05e4af6f56c4fb764721012571ee,
         type: 2}
       propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114208230757037526, guid: 28aa05e4af6f56c4fb764721012571ee,
+        type: 2}
+      propertyPath: goToPosition.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 198725051693838576, guid: 28aa05e4af6f56c4fb764721012571ee,
+        type: 2}
+      propertyPath: CollisionModule.collisionMessages
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
