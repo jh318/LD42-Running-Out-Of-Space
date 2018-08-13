@@ -47895,8 +47895,23 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
+  - time: 0
+    functionName: FP_AttackName
+    data: 
+    objectReferenceParameter: {fileID: 11400000, guid: 156db2ac55cd57f499c0448741e0f855,
+      type: 2}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.016666668
     functionName: FP_CancelWindowOn
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.016666668
+    functionName: FP_HitboxOff
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

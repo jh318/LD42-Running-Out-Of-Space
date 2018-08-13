@@ -117,17 +117,16 @@ public class FightController : MonoBehaviour
 		{
 			Rigidbody targetBody = target.GetComponent<Rigidbody>();
 			targetBody.constraints = RigidbodyConstraints.None;
-			
+				targetBody.velocity = Vector3.zero;
+
 			if (tech.launch)
 			{
-				targetBody.velocity = Vector3.zero;
 				targetBody.AddForce(transform.forward * tech.force, ForceMode.Impulse);
 			}
 			else if (tech.juggle)
 			{
 				target.GetComponent<Enemy>().juggled = true;
 				target.GetComponent<Enemy>().JuggleState();
-				targetBody.velocity = Vector3.zero;
 				targetBody.AddForce(Vector3.up * tech.force, ForceMode.Impulse);
 			}
 			else if (tech.dizzy)
