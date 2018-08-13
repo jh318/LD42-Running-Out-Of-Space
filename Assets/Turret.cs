@@ -51,6 +51,7 @@ public class Turret : MonoBehaviour {
 
 	public void DestroyTurret()
 	{
+		FindObjectOfType<GameManager>().turretCount--; //TODO change if we make gamemanager static
 		StopAllCoroutines();
 		Destroy(gameObject);
 	}
