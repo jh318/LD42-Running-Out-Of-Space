@@ -2533,9 +2533,10 @@ MonoBehaviour:
   hitStun: 0
   hitStunTimer: 0
   juggled: 0
-  maxHealthPoints: 100
+  maxHealthPoints: 175
   Sword: {fileID: 1086057791902718}
   swordDrawTime: 3
+  currentHealthPoints: 100
 --- !u!114 &114425926472366238
 MonoBehaviour:
   m_ObjectHideFlags: 1

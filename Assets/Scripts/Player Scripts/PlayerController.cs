@@ -155,6 +155,26 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	void OnCollisionStay(Collision c)
+	{
+		if (c.gameObject.tag == "Ground")
+		{
+			//animator.applyRootMotion = false;
+			animator.SetBool("IsJumping", false);
+			animator.SetTrigger("Landing");
+		}
+	}
+
+	void OnCollisionExit(Collision c)
+	{
+		float dotProduct = Vector3.Dot(c.gameObject.transform.up, transform.up);
+		if (dotProduct > 0.9f && c.gameObject.tag == "Ground")
+		{
+			animator.applyRootMotion = false;
+			animator.SetBool("IsJumping", true);
+		}
+	}
+
 	void Land()
 	{
 		Debug.Log("Landed");

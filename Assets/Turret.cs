@@ -24,7 +24,10 @@ public class Turret : MonoBehaviour {
 	void Update()
 	{
 		LookAtPlayer();
-		MoveToPosition();
+		if (goToPosition != Vector3.zero)
+		{
+			MoveToPosition();
+		}
 	}
 
 	IEnumerator FireRoutine()

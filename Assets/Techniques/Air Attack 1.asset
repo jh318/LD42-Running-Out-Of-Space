@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223eb126cdc0c2d46ba2242ccb107917, type: 3}
   m_Name: Air Attack 1
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 20
   stun: 0
   hitStun: 0.3
   force: 1000

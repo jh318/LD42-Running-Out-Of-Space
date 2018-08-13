@@ -13,9 +13,10 @@ public class Enemy : MonoBehaviour
 	[SerializeField] float maxHealthPoints = 100f;
 	[SerializeField] GameObject Sword;
 	[SerializeField] float swordDrawTime = 3f;
+	[SerializeField] float playerHealthRestore = 30f;
 
 	float swordTimer;
-	float currentHealthPoints = 100f;
+	[SerializeField] float currentHealthPoints = 100f;
 
 	float m_horizontalVelocity;
 	float m_forwardVelocity;
@@ -54,6 +55,7 @@ public class Enemy : MonoBehaviour
 
 		StartCoroutine(StartAI());
 		StartCoroutine(SwordStatus());
+		currentHealthPoints = maxHealthPoints;
 
 	}
 
@@ -188,6 +190,7 @@ public class Enemy : MonoBehaviour
 
 	void DestroyEnemy()
 	{
+		player.GetComponent<PlayerHealth>().HealPlayer(playerHealthRestore);
 		StopAllCoroutines();
 		Destroy(gameObject);
 	}

@@ -87,7 +87,7 @@ public class FightController : MonoBehaviour
 		{
 			Enemy enemy = g.GetComponent<Enemy>();
 			enemy.hitStun = true;
-			enemy.CurrentHealthPoints = enemy.CurrentHealthPoints - 10f; // TODO let tech decide damage
+			enemy.CurrentHealthPoints = enemy.CurrentHealthPoints - currentTechnique.damage; // TODO let tech decide damage
 			if(enemy.GetComponent<NavMeshAgent>()) // TODO move this to the enemy if possible
 			{
 				enemy.GetComponent<NavMeshAgent>().enabled = false;
