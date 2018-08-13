@@ -10,6 +10,9 @@ public class PlayerHealth : MonoBehaviour
 
 	public float currentHealth = 100f;
 	[SerializeField] float maxHealth = 100f;
+	public float currentEnergy = 100f;
+	[SerializeField] float maxEnergy = 100f;
+	[SerializeField] float energyRegeneration = 1f;
 
 	PlayerUI playerUI;
 
@@ -17,6 +20,14 @@ public class PlayerHealth : MonoBehaviour
 	{
 		playerUI = GetComponentInChildren<PlayerUI>();
 		Debug.Log(GetComponentInChildren<PlayerUI>());
+	}
+
+	void Update()
+	{
+		currentEnergy += energyRegeneration * Time.deltaTime;
+		currentEnergy = Mathf.Clamp(currentEnergy, 0f, maxEnergy);
+		SetEnergyBar();
+		Debug.Log(currentEnergy); 
 	}
 
 	public void DamagePlayer(float damage)
@@ -27,7 +38,19 @@ public class PlayerHealth : MonoBehaviour
 
 	void SetHealthBar(float damage)
 	{
-		playerUI.HealthBar.fillAmount = (currentHealth - damage) / maxHealth;
+		playerUI.HealthBar.fillAmount = (currentHealth) / maxHealth;
+	}
+
+	public void UseEnergy(float energy)
+	{
+		currentEnergy -= energy;
+		SetEnergyBar();
+
+	}
+
+	void SetEnergyBar()
+	{
+		playerUI.EnergyBar.fillAmount = (currentEnergy) / maxEnergy;
 	}
 
 	

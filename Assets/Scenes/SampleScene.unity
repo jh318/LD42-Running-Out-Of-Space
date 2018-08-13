@@ -10607,6 +10607,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114258091237078344, guid: 9764a2d7204eeba4280705f25cfc107b,
+        type: 2}
+      propertyPath: energyRegeneration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114401772419923600, guid: 9764a2d7204eeba4280705f25cfc107b,
+        type: 2}
+      propertyPath: boostPower
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9764a2d7204eeba4280705f25cfc107b, type: 2}
   m_IsPrefabAsset: 0
