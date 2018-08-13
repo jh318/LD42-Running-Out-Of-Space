@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -16,6 +17,16 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] Transform turretSpawnPoint;
 
 	PlayerController player;
+
+	void OnEnable()
+	{
+		PlayerHealth.playerDeath += PlayerDied;
+	}
+
+	void OnDisable()
+	{
+		PlayerHealth.playerDeath -= PlayerDied;
+	}
 	
 	void Start()
 	{
@@ -23,8 +34,6 @@ public class GameManager : MonoBehaviour {
 		{
 			player = FindObjectOfType<PlayerController>();
 		}
-
-		
 
 		StartCoroutine(SpawnEnemyRoutine());
 		StartCoroutine(SpawnTurretRoutine());
@@ -65,5 +74,16 @@ public class GameManager : MonoBehaviour {
 	{
 		Instantiate(turretPrefab, turretSpawnPoint.transform.position, Quaternion.identity);
 		turretCount++;
+	}
+
+	void PlayerDied()
+	{
+		StartCoroutine(GameOver());
+	}
+
+	IEnumerator GameOver()
+	{
+		yield return new WaitForSeconds(5f);
+		SceneManager.LoadScene(0);
 	}
 }

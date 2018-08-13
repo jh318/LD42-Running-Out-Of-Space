@@ -15,16 +15,24 @@ public class PlayerHealth : MonoBehaviour
 	[SerializeField] float energyRegeneration = 1f;
 
 	PlayerUI playerUI;
+	Animator animator;
+
+	public delegate void PlayerDeath();
+	public static event PlayerDeath playerDeath;
 
 	void Start()
 	{
+		animator = GetComponent<Animator>();
 		playerUI = GetComponentInChildren<PlayerUI>();
 		Debug.Log(GetComponentInChildren<PlayerUI>());
 	}
 
 	void Update()
 	{
-		currentEnergy += energyRegeneration * Time.deltaTime;
+		if (!animator.GetBool("IsJumping"))
+		{
+			currentEnergy += energyRegeneration * Time.deltaTime;
+		}
 		currentEnergy = Mathf.Clamp(currentEnergy, 0f, maxEnergy);
 		SetEnergyBar();
 	}
@@ -33,6 +41,11 @@ public class PlayerHealth : MonoBehaviour
 	{
 		currentHealth -= damage;
 		SetHealthBar(damage);
+		if(currentHealth <= 0)
+		{
+			playerDeath();
+			animator.SetTrigger("Dead");
+		}
 	}
 
 	void SetHealthBar(float damage)
