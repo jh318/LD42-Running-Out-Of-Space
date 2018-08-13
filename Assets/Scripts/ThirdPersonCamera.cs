@@ -7,6 +7,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
 	public Camera targetCamera;
 	public GameObject targetObject;
+	public GameObject Pivot { get { return pivot; } }
 
 	[SerializeField] GameObject pivot;
 	[SerializeField] Vector3 startPosition = new Vector3(0.0f, 2.0f, -10.0f);

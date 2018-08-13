@@ -178,16 +178,32 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Fire1"))
 		{
-			//transform.localEulerAngles = new Vector3(0f, thirdPersonCamera.transform.eulerAngles.y, 0f);
+			if(animator.GetBool("IsIdle"))
+			{
+				SetAttackDirectionToCamera();
+			}
 			animator.SetTrigger("Attack");		
 			swordTimer = swordDrawTime;
 		}
+	}
+
+	void SetAttackDirectionToCamera()
+	{
+		transform.eulerAngles = new Vector3(
+			0f,
+			thirdPersonCamera.Pivot.transform.eulerAngles.y,
+			0f
+		);
 	}
 
 	void Attack2()
 	{
 		if (Input.GetButtonDown("Fire2"))
 		{
+			if(animator.GetBool("IsIdle"))
+			{
+				SetAttackDirectionToCamera();
+			}
 			animator.SetTrigger("SpecialAttack");
 		}
 	}
