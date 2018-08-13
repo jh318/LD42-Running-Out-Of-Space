@@ -45,7 +45,7 @@ public class RunState : StateMachineBehaviour
 			animator.SetBool("IsRunning", false);
 		}
 
-		Debug.Log(body.velocity.z);
+		//Debug.Log(body.velocity.z);
 	}
 
 	// // // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

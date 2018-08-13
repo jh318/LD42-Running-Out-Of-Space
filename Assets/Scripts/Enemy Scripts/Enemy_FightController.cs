@@ -9,6 +9,7 @@ public class Enemy_FightController : MonoBehaviour
 	bool cancelWindow = false;
 	GameObject activeHitbox;
 	[SerializeField] Enemy_HitBox[] Enemy_HitBoxes;
+	[SerializeField] float enemyDamage = 10f;
 	//List<GameObject> hitboxes = new List<GameObject>();
 	Technique currentTechnique;
 	Animator animator;
@@ -95,6 +96,7 @@ public class Enemy_FightController : MonoBehaviour
 			PlayerController target = g.GetComponent<PlayerController>();
 			Debug.Log("Hit the target: " + target.name);
 			//target.CurrentHealthPoints = target.CurrentHealthPoints - 30f; TODO make enemy damage player
+			target.GetComponent<PlayerHealth>().DamagePlayer(enemyDamage);
 
 		}
 	}
