@@ -10,8 +10,9 @@ public class TitleScreenManager : MonoBehaviour {
 
 	void Start()
 	{
-		Cursor.visible = false;
+		;
 		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 		float minutes = Mathf.Floor(ScoreTracker.instance.bestTime / 60);
 		float seconds = ScoreTracker.instance.bestTime % 60;
 		score.text = "Best Time: " + minutes + ":" + Mathf.RoundToInt(seconds);
