@@ -2840,7 +2840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2974d3e27e84fb44a6b6d057326fed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCanvasPrefab: {fileID: 1416962926412084}
+  playerCanvasPrefab: {fileID: 0}
   healthbar: {fileID: 114231122370722870}
   energyBar: {fileID: 114956687860020050}
 --- !u!114 &114211795872836816
@@ -2894,6 +2894,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   maxHealth: 100
+  currentEnergy: 100
+  maxEnergy: 100
+  energyRegeneration: 10
 --- !u!114 &114299801698251524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2947,7 +2950,7 @@ MonoBehaviour:
   jumpForce: 10
   Sword: {fileID: 1801948994760810}
   swordDrawTime: 3
-  boostPower: 70
+  boostPower: 30
 --- !u!114 &114489344518626232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3347,7 +3350,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -3400,7 +3403,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -3516,7 +3519,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6990,7 +6993,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 0
+    enabled: 1
     mode: 0
     ratio: 1
     lifetime:
@@ -7051,7 +7054,7 @@ ParticleSystem:
     ribbonCount: 1
     worldSpace: 0
     dieWithParticles: 1
-    sizeAffectsWidth: 1
+    sizeAffectsWidth: 0
     sizeAffectsLifetime: 0
     inheritParticleColor: 1
     generateLightingData: 0
@@ -8365,7 +8368,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 5000
+    maxNumParticles: 300
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -9012,8 +9015,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.050980363, g: 0.83939654, b: 0.9529412, a: 1}
-        key1: {r: 1, g: 0.25943398, b: 0.3497027, a: 0.69411767}
+        key0: {r: 0.050980363, g: 0.83939654, b: 0.9529412, a: 0.12941177}
+        key1: {r: 1, g: 0.25943398, b: 0.3497027, a: 0.09411765}
         key2: {r: 1, g: 1, b: 1, a: 0.003921569}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -12407,8 +12410,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 55abea881114bc642877ea17a8724fea, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: b57a7da994ad2dd4a8d6cd38f3959d42, type: 2}
+  - {fileID: 2100000, guid: e5379c58bf2bacd429a6b7ce417fe5e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
