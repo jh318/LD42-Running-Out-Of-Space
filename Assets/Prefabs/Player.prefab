@@ -2897,6 +2897,7 @@ MonoBehaviour:
   currentEnergy: 100
   maxEnergy: 100
   energyRegeneration: 10
+  healthLoss: 1.5
 --- !u!114 &114299801698251524
 MonoBehaviour:
   m_ObjectHideFlags: 1
