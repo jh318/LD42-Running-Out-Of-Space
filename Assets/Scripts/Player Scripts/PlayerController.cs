@@ -51,9 +51,13 @@ public class PlayerController : MonoBehaviour
 		SetAnimator();
 		Jump();
 		AttackInputs();
-		DodgeShift();
 
 		ThirdPersonCamera();
+	}
+
+	void FixedUpdate()
+	{
+		DodgeShift();
 	}
 
 	void GetAxes()
@@ -228,7 +232,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if(Input.GetKeyDown(KeyCode.LeftShift))
 		{
-			StartCoroutine((DodgeShiftTime(0.3f)));
+			StartCoroutine((DodgeShiftTime(0.01f)));
 		}
 	}
 

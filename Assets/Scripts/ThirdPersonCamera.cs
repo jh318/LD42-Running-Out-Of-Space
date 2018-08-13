@@ -39,6 +39,18 @@ public class ThirdPersonCamera : MonoBehaviour
 	{
 		transform.position = Vector3.Lerp(transform.position, targetObject.transform.position, followSpeed * Time.deltaTime);
 		pivot.transform.eulerAngles += new Vector3(-m_MouseY, m_MouseX, 0.0f);
+		if(Input.GetKeyDown(KeyCode.R))
+		{
+			pivot.transform.localPosition = Vector3.zero;
+			targetCamera.transform.localPosition = Vector3.zero;
+			targetCamera.transform.localPosition = startPosition;
+			pivot.transform.eulerAngles = new Vector3
+			(
+				0f,
+				targetObject.transform.localEulerAngles.y,
+				0f
+			); 
+		}
 	}
 
 	void LockCursor()
