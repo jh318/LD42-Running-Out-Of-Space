@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Fire1"))
 		{
-			if(animator.GetBool("IsIdle"))
+			if(!animator.GetBool("IsRunning"))
 			{
 				SetAttackDirectionToCamera();
 			}
@@ -200,10 +200,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Fire2"))
 		{
-			if(animator.GetBool("IsIdle"))
-			{
-				SetAttackDirectionToCamera();
-			}
+			SetAttackDirectionToCamera();
 			animator.SetTrigger("SpecialAttack");
 		}
 	}

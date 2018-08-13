@@ -44348,7 +44348,7 @@ AnimationClip:
     messageOptions: 0
   - time: 0.15
     functionName: FP_HitboxOn
-    data: Light Attack 2
+    data: AirScoop
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
