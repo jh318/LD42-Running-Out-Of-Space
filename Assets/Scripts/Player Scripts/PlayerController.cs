@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour
 	public float Horizontal { get { return m_horizontal; } }
 	public float Vertical { get { return m_vertical; } }
 
+	public Vector3 TargetDirection{
+		get { return targetDirection; }
+	}
+
 	[SerializeField] float maxTurnSpeed = 500f;
 	[SerializeField] float jumpForce = 5f;
 	[SerializeField] GameObject Sword;
@@ -130,7 +134,9 @@ public class PlayerController : MonoBehaviour
 			if(animator.GetBool("CanJump") && !animator.GetBool("IsJumping"))
 			{
 				animator.applyRootMotion = false;
+				animator.SetBool("IsJumping", true);
 				body.velocity += Vector3.up * jumpForce;
+
 			}
 		}
 	}

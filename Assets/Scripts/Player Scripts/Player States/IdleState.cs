@@ -14,6 +14,8 @@ public class IdleState : StateMachineBehaviour
 		animator.ResetTrigger("Land");
 		animator.ResetTrigger("Attack");
 		animator.ResetTrigger("SpecialAttack");
+		animator.SetBool("IsJumping", false);
+		animator.SetBool("CanJump", true);
 	}
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
