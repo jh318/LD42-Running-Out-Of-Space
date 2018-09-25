@@ -71,7 +71,7 @@ public class PlayerHealth : MonoBehaviour
 	public void HealPlayer(float heal)
 	{
 		currentHealth += heal;
-		currentHealth = Mathf.Clamp(currentHealth, 0, 100f);
+		currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 		SetEnergyBar();
 	}
 

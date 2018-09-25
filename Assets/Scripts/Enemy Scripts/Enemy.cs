@@ -188,7 +188,7 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
-	void DestroyEnemy()
+	public void DestroyEnemy()
 	{
 		player.GetComponent<PlayerHealth>().HealPlayer(playerHealthRestore);
 		StopAllCoroutines();

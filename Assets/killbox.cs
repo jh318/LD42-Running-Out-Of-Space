@@ -10,5 +10,9 @@ public class killbox : MonoBehaviour {
 		{
 			c.GetComponent<PlayerHealth>().DamagePlayer(999);
 		}
+		else if (c.GetComponent<Enemy>())
+		{
+			c.GetComponent<Enemy>().DestroyEnemy();
+		}
 	}
 }

@@ -11,8 +11,9 @@ Assets/Vendor/ProCore/*
 Temp/*
 Assets/3DGameKit/*
 Assets/3DGamekit.meta
-Assets/Samurai_Katana/
+Assets/Samurai_Katana/*
 Assets/Samurai_Katana.meta
+Assets/Animation/*
 *.csproj
 *.sln
 *.userprefs
